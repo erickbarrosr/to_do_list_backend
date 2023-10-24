@@ -1,13 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const conn = require("./db/conn");
+const database = require("./db");
 
 const app = express();
-conn();
+database();
 
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-app.listen(3000, (req, res) => {
-  console.log("CONNECTED SERVER!");
-});
+module.exports = app;
